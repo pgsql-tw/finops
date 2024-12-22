@@ -16,6 +16,6 @@
 - 從個人財務開始練習
 ### FOCUS™
 - FOCUS™: https://focus.finops.org/
-  - 提出 FinOps 共通的資料結構，便於在同一個資料結構中整合處理多個雲端環境的財務資訊
-  - 3大公有雲均支援 FOCUS 1.0 Data Format
-  - Sandbox: https://focus.finops.org/sandbox/ (下載或測試查詢)
+  - 提出 FinOps 資料結構的標準，便於在共通的資料結構中整合處理多個雲端環境的財務資訊
+  - 三大公有雲均支援 FOCUS 1.0 Data Format
+  - Sandbox: https://focus.finops.org/sandbox/ (下載測試資料或測試查詢)
