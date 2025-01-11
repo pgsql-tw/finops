@@ -10,6 +10,12 @@
 ```
 CREATE DATABASE finops OWNER user99;
 ```
+- user99 替換成你的使用者名稱
+- 以下使用 user99 或你的使用名稱登入
 
 ## Scheme
+```
+CREATE SCHEMA IF NOT EXISTS user99 AUTHORIZATION user99 ;
+```
+- https://www.postgresql.org/docs/current/sql-createschema.html
 ## Tables
