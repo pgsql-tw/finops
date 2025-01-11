@@ -19,3 +19,7 @@ CREATE SCHEMA IF NOT EXISTS user99 AUTHORIZATION user99 ;
 ```
 - https://www.postgresql.org/docs/current/sql-createschema.html
 ## Tables
+
+## Sample data
+
+## My reports
