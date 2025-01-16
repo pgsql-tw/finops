@@ -46,9 +46,12 @@ insert into expenses(trading_date,category,value,note) select CURRENT_DATE-(rand
 ```
 select sum(value) from expenses where trading_date > now() - interval '30 days';
 ```
-### 統計上, 每 30 天 99% 的花費低於這個數字
+### 統計上, 每 30 天 95% 的花費低於這個數字
 ```
 with t_sum30 as (
 select last_365.trading_date,(select sum(value) as sum30 from expenses where expenses.trading_date between (last_365.trading_date-interval '30 days') and last_365.trading_date) from last_365)
-select avg(sum30)+3*stddev(sum30) from t_sum30;
+select (avg(sum30)+2*stddev(sum30)) from t_sum30;
 ```
+- 假設結果為 27367
+- 你的可支配所得為 60000
+- 每月存下 (60000 - 27367 = ```32633```) 以上的機率為 95% 
