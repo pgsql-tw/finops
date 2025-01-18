@@ -33,25 +33,31 @@ CREATE TABLE expenses (
 ## Views
 - 產生過去 365 天的日期
 ```
-create view last_365 as (select (CURRENT_DATE - generate_series(1,365))::date as trading_date);
+CREATE VIEW last_365 AS
+	(SELECT (CURRENT_DATE - generate_series(1,365))::date AS trading_date);
 ```
 
 ## Generating sample data
 ```
-insert into expenses(trading_date,category,value,note) select CURRENT_DATE-(random()*365)::int,'轉帳',(random()*1000+100)::int,'網拍' from generate_series(1, 365);
+INSERT INTO expenses(trading_date,category,value,note)
+	SELECT CURRENT_DATE-(random()*365)::int,'轉帳',(random()*1000+100)::int,'網拍' from generate_series(1, 365);
 ```
 - 過去 365 天, 總共有 365 筆, 介於 100 ~ 1100 之間的轉帳交易
 ## My reports
 ### 最近 30 天的總花費
 ```
-select sum(value) from expenses where trading_date > now() - interval '30 days';
+SELECT sum(value) FROM expenses WHERE trading_date > now() - interval '30 days';
 ```
-### 統計上, 每 30 天 95% 的花費低於這個數字
+### 統計上, 每 30 天 95% 的花費低於這個數字 (低風險)
 ```
-with t_sum30 as (
-select last_365.trading_date,(select sum(value) as sum30 from expenses where expenses.trading_date between (last_365.trading_date-interval '30 days') and last_365.trading_date) from last_365)
-select (avg(sum30)+2*stddev(sum30)) from t_sum30;
+WITH t_sum30 AS (
+	SELECT last_365.trading_date
+             ,(SELECT sum(value) AS sum30 FROM expenses WHERE expenses.trading_date BETWEEN (last_365.trading_date-interval '30 days') and last_365.trading_date)
+	FROM last_365)
+SELECT (avg(sum30)+2*stddev(sum30)) FROM t_sum30;
 ```
 - 假設結果為 27367
 - 你的可支配所得為 60000
-- 每月存下 (60000 - 27367 = ```32633```) 以上的機率為 95% 
+- 每月存下 (60000 - 27367 = ```32633```) 以上的機率為 95%
+
+
