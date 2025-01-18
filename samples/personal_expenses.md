@@ -15,9 +15,10 @@ CREATE DATABASE finops OWNER user99;
 
 ## Scheme
 ```
-CREATE SCHEMA IF NOT EXISTS user99 AUTHORIZATION user99 ;
+CREATE SCHEMA IF NOT EXISTS user99;
 ```
 - https://www.postgresql.org/docs/current/sql-createschema.html
+
 ## Tables
 ```
 CREATE TABLE expenses (
