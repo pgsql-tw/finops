@@ -35,7 +35,8 @@ CREATE TABLE cost_daily (
 	cost_date DATE,
 	cost_total INT,
 	ma7 DECIMAL(10,2),
-	ma30 DECIMAL(10,2)
+	ma30 DECIMAL(10,2),
+	primay key (cost_date)
 );
 ```
 
