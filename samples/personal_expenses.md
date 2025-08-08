@@ -25,9 +25,17 @@ CREATE TABLE expenses (
 	uuid uuid DEFAULT gen_random_uuid() NOT NULL,
 	trading_date date DEFAULT now() NULL,
 	category text NULL,
-	value int4 NULL,
+	value int NULL,
 	note text NULL,
 	CONSTRAINT expenses_pk PRIMARY KEY (uuid)
+);
+```
+```
+CREATE TABLE cost_daily (
+	cost_date DATE,
+	cost_total INT,
+	ma7 DECIMAL(10,2),
+	ma30 DECIMAL(10,2)
 );
 ```
 
